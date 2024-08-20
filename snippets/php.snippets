@@ -1,0 +1,81 @@
+snippet func
+	function ${1:functionName}($2) {
+		${0:${VISUAL}}
+	}
+snippet pubf
+	public function ${1:methodName}($2): ${3:void}
+	{
+		${0:${VISUAL}}
+	}
+snippet pubsf
+	public static function ${1:methodName}($2): ${3:void}
+	{
+		${0:${VISUAL}}
+	}
+snippet prof
+	protected function ${1:methodName}($2): ${3:void}
+	{
+		${0:${VISUAL}}
+	}
+snippet prosf
+	protected static function ${1:methodName}($2): ${3:void}
+	{
+		${0:${VISUAL}}
+	}
+snippet prif
+	private function ${1:methodName}($2): ${3:void}
+	{
+		${0:${VISUAL}}
+	}
+snippet prisf
+	private static function ${1:methodName}($2): ${3:void}
+	{
+		${0:${VISUAL}}
+	}
+snippet _c
+	public function __construct($1)
+	{
+		${0:${VISUAL}}
+	}
+
+snippet this "$this->"
+	\$this->${0:${VISUAL}}
+snippet . "->"
+	->${0:${VISUAL}}
+
+snippet ase "$this->assertEquals($expected, $actual)"
+	\$this->assertEquals(${1:\$expected}, ${2:\$actual});
+snippet asne "$this->assertNotEquals($expected, $actual)"
+	\$this->assertNotEquals(${1:\$expected}, ${2:\$actual});
+snippet asf "$this->assertFalse($actual)"
+	\$this->assertFalse(${1:\$actual});
+snippet ast "$this->assertTrue($actual)"
+	\$this->assertTrue(${1:\$actual});
+snippet ascon "$this->assertContains($needle, $haystack)"
+	\$this->assertContains(${1:\$needle}, ${2:\$haystack});
+snippet asncon "$this->assertNotContains($needle, $haystack)"
+	\$this->assertNotContains(${1:\$needle}, ${2:\$haystack});
+snippet ascono "$this->assertContainsOnly($needle, $haystack)"
+	\$this->assertContainsOnly(${1:\$needle}, ${2:\$haystack});
+snippet asconoi "$this->assertContainsOnlyInstancesOf(Needle::class, $haystack)"
+	\$this->assertContainsOnlyInstancesOf(${1:Needle}::class, ${2:\$haystack});
+snippet ashk "$this->assertArrayHasKey($key, $array)"
+	\$this->assertArrayHasKey(${1:\$key}, ${2:\$array});
+snippet asnhk "$this->assertArrayNotHasKey($key, $array)"
+	\$this->assertArrayNotHasKey(${1:\$key}, ${2:\$array});
+snippet ascha "$this->assertClassHasAttribute($attribute, Foo::class)"
+	\$this->assertClassHasAttribute(${1:\$attribute}, ${2:Foo}::class);
+snippet asi "$this->assertInstanceOf(Expected::class, $actual)"
+	\$this->assertInstanceOf(${1:Expected}::class, ${2:\$actual});
+snippet asit "$this->assertInternalType('type', $actual)"
+	\$this->assertInternalType(${1:'type'}, ${2:\$actual});
+snippet asco "$this->assertCount($count, $haystack)"
+	\$this->assertCount(${1:\$count}, ${2:\$haystack});
+snippet asnco "$this->assertNotCount($count, $haystack)"
+	\$this->assertNotCount(${1:\$count}, ${2:\$haystack});
+snippet assub "$this->assertArraySubset($subset, $array)"
+	\$this->assertArraySubset(${1:\$subset}, ${2:\$array});
+snippet asnu "$this->assertNull($actual)"
+	\$this->assertNull(${1:\$actual});
+snippet asnnu "$this->assertNotNull($actual)"
+	\$this->assertNotNull(${1:\$actual});
