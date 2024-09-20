@@ -11,6 +11,7 @@ local languages, servers, dictionary = utils.entities_and_dictionary({
   python = 'jedi_language_server',
   rust = 'rust_analyzer',
   bash = 'bashls',
+  yaml = 'yamlls',
 })
 
 return {{
