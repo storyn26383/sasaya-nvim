@@ -8,9 +8,6 @@ return {{
     'neovim/nvim-lspconfig',
     'saadparwaiz1/cmp_luasnip',
     'L3MON4D3/LuaSnip',
-    'zbirenbaum/copilot-cmp',
-    'zbirenbaum/copilot.lua',
-    'Exafunction/codeium.nvim',
   },
   event = {
     'InsertEnter',
@@ -62,8 +59,6 @@ return {{
         end, { 'i', 's' }),
       }),
       sources = cmp.config.sources({
-        { name = 'copilot' },
-        { name = 'codeium' },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'buffer' },
