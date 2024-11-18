@@ -12,9 +12,20 @@ local languages, servers, dictionary = utils.entities_and_dictionary({
   rust = 'rust_analyzer',
   bash = 'bashls',
   yaml = 'yamlls',
+  typespec = 'tsp_server',
+  dart = 'dartls',
 })
+local config_manually = { 'dartls' }
+local without_mason_lspconfig = utils.merge(G.disabled_lsp_server, config_manually)
 
 return {{
+  'williamboman/mason-lspconfig.nvim',
+  config = function()
+    for _, server_name in ipairs(config_manually) do
+      require('languages.'..dictionary[server_name])
+    end
+  end,
+}, {
   'williamboman/mason.nvim',
   dependencies = {
     'williamboman/mason-lspconfig.nvim',
@@ -25,11 +36,11 @@ return {{
     require('mason').setup()
     require('mason-lspconfig').setup({
       ensure_installed = utils.filter(servers, function(value)
-        return not utils.in_table(G.disabled_lsp_server, value)
+        return not utils.in_table(without_mason_lspconfig, value)
       end),
       handlers = {
         function (server_name)
-          if utils.in_table(G.disabled_lsp_server, server_name) then
+          if utils.in_table(without_mason_lspconfig, server_name) then
             return
           end
 
