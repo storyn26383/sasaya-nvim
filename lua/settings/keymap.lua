@@ -72,3 +72,6 @@ vim.keymap.set('n', 'Y', 'yy')
 -- coerce string
 vim.keymap.set('n', '<Leader>c', require('includes.coerce-string').coerce_string)
 vim.keymap.set('x', '<Leader>c', function() require('includes.coerce-string').coerce_string({ visual = true }) end)
+
+-- toggle diagnostic list
+vim.keymap.set('n', '<Leader><Leader>d', vim.diagnostic.setqflist)
