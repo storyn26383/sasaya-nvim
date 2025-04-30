@@ -176,4 +176,14 @@ utils.language = function(language, callback)
   })
 end
 
+utils.split = function(str, sep)
+  local result = {}
+
+  for value in string.gmatch(str, '([^'..sep..']+)') do
+    table.insert(result, value)
+  end
+
+  return result
+end
+
 return utils
