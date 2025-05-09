@@ -26,6 +26,11 @@ return {{
       files = {
         git_icons = false,
         file_icons = false,
+        hidden = true,
+        no_ignore = false,
+        actions = {
+          ['ctrl-g'] = fzf.actions.toggle_ignore,
+        },
       },
       grep = {
         git_icons = false,
