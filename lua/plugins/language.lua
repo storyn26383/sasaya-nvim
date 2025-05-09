@@ -18,11 +18,18 @@ local languages, servers, dictionary = utils.entities_and_dictionary({
 local without_mason_lspconfig = utils.merge(G.disabled_language_server, {
   'dartls',
 })
+local formaters = {
+  'pint',
+  'php-cs-fixer',
+}
+local linters = {
+  'phpstan',
+}
 
 return {{
-  'mason-org/mason.nvim',
+  'mason-org/mason-lspconfig.nvim',
   dependencies = {
-    'mason-org/mason-lspconfig.nvim',
+    'mason-org/mason.nvim',
     'neovim/nvim-lspconfig',
     'ibhagwan/fzf-lua',
   },
@@ -76,6 +83,26 @@ return {{
     keymap('n', '[d', vim.diagnostic.goto_prev, options)
     keymap('n', ']d', vim.diagnostic.goto_next, options)
   end,
+}, {
+  'jay-babu/mason-null-ls.nvim',
+  dependencies = {
+    'mason-org/mason.nvim',
+    'nvimtools/none-ls.nvim',
+  },
+  config = function()
+    require('mason').setup()
+    require('mason-null-ls').setup({
+      ensure_installed = utils.merge(formaters, linters),
+    })
+
+    local keymap = vim.keymap.set
+    local options = { silent = true }
+
+    keymap('n', '<Leader>f', function()
+      vim.lsp.buf.format()
+      vim.cmd('write')
+    end, options)
+  end
 }, {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
