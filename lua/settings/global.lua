@@ -1,3 +1,3 @@
 G = {
-  disabled_lsp_server = {}
+  disabled_language_server = {}
 }

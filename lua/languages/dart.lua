@@ -1,4 +1,4 @@
-require('lspconfig').dartls.setup({
+vim.lsp.config('dartls', {
   cmd = { 'fvm', 'dart', 'language-server', '--protocol=lsp' },
   filetypes = { 'dart' },
   init_options = {

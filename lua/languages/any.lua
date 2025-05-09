@@ -1,4 +1,4 @@
-require('lspconfig').typos_lsp.setup({
+vim.lsp.config('typos_lsp', {
   init_options = {
     diagnosticSeverity = 'Warning',
   },

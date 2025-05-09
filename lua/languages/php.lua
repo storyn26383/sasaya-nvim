@@ -12,5 +12,3 @@ utils.language('php', function()
 
   vim.keymap.set('n', '<Leader>f', php_cs_fix)
 end)
-
-require('lspconfig').intelephense.setup({})

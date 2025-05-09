@@ -15,50 +15,39 @@ local languages, servers, dictionary = utils.entities_and_dictionary({
   typespec = 'tsp_server',
   dart = 'dartls',
 })
-local config_manually = { 'dartls' }
-local without_mason_lspconfig = utils.merge(G.disabled_lsp_server, config_manually)
+local without_mason_lspconfig = utils.merge(G.disabled_language_server, {
+  'dartls',
+})
 
 return {{
-  'williamboman/mason-lspconfig.nvim',
-  config = function()
-    for _, server_name in ipairs(config_manually) do
-      require('languages.'..dictionary[server_name])
-    end
-  end,
-}, {
-  'williamboman/mason.nvim',
+  'mason-org/mason.nvim',
   dependencies = {
-    'williamboman/mason-lspconfig.nvim',
+    'mason-org/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
     'ibhagwan/fzf-lua',
   },
   config = function()
+    for _, language in ipairs(languages) do
+      if utils.mod_exists('languages.'..language) then
+        require('languages.'..language)
+      end
+    end
+
+    local ensure_installed = utils.filter(servers, function(value)
+      return not utils.in_table(without_mason_lspconfig, value)
+    end)
+
     require('mason').setup()
     require('mason-lspconfig').setup({
-      ensure_installed = utils.filter(servers, function(value)
-        return not utils.in_table(without_mason_lspconfig, value)
-      end),
-      handlers = {
-        function (server_name)
-          if utils.in_table(without_mason_lspconfig, server_name) then
-            return
-          end
-
-          local language = dictionary[server_name]
-
-          if language == nil then
-            return
-          end
-
-          if utils.mod_exists('languages.'..language) then
-            require('languages.'..language)
-            return
-          end
-
-          require('lspconfig')[server_name].setup({})
-        end,
-      },
+      ensure_installed = ensure_installed,
+      -- TODO: mason-lspconfig automatic enable is not working
+      automatic_enable = false,
     })
+
+    -- TODO: mason-lspconfig automatic enable is not working
+    for _, server in ipairs(ensure_installed) do
+      vim.lsp.enable(server)
+    end
 
     vim.diagnostic.config({
       virtual_text = false,

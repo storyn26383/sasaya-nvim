@@ -1,4 +1,4 @@
-require('lspconfig').tsserver.setup({
+vim.lsp.config('tsserver', {
   filetypes = { 'typescript', 'javascript', 'vue' },
   init_options = {
     plugins = {{

@@ -1,4 +1,4 @@
-require('lspconfig').volar.setup({
+vim.lsp.config('volar', {
   filetypes = { 'vue', 'typescript', 'javascript' },
   init_options = {
     typescript = {
