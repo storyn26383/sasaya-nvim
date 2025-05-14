@@ -39,6 +39,7 @@ vim.opt.showtabline = 2                                 -- always show tab line 
 vim.opt.laststatus = 2                                  -- always show status line (the very bottom line)
 vim.opt.synmaxcol = 512                                 -- maximum column for syntax highlight
 vim.opt.diffopt:append('vertical')                      -- show vertical diff by default
+vim.opt.guicursor = 'n-v-c-i:block-Cursor'              -- block cursor in normal, visual, and command mode
 
 -- auto completion settings
 vim.opt.wildmode = { 'list', 'full' }                   -- make tab completion for files/buffers act like bash
