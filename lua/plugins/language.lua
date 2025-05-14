@@ -47,14 +47,8 @@ return {{
     require('mason').setup()
     require('mason-lspconfig').setup({
       ensure_installed = ensure_installed,
-      -- TODO: mason-lspconfig automatic enable is not working
-      automatic_enable = false,
+      automatic_enable = true,
     })
-
-    -- TODO: mason-lspconfig automatic enable is not working
-    for _, server in ipairs(ensure_installed) do
-      vim.lsp.enable(server)
-    end
 
     vim.diagnostic.config({
       virtual_text = false,
