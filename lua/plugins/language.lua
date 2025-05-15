@@ -53,6 +53,9 @@ return {{
     vim.diagnostic.config({
       virtual_text = false,
       signs = true,
+      float = {
+        border = 'rounded',
+      },
     })
 
     vim.opt.omnifunc = 'v:lua.vim.lsp.omnifunc'
@@ -66,11 +69,15 @@ return {{
       fzf.lsp_workspace_symbols({ lsp_query = fzf_utils.get_visual_selection() })
     end
 
+    local lsp_hover = function()
+      vim.lsp.buf.hover({ border = 'rounded' })
+    end
+
     keymap('n', '<Leader>d', vim.diagnostic.open_float, options)
     keymap('n', '<Leader>r', fzf.lsp_document_symbols, options)
     keymap('n', '<Leader>t', fzf.lsp_live_workspace_symbols, options)
     keymap('v', '<Leader>t', lsp_workspace_symbols_visual, options)
-    keymap('n', '<Leader>v', vim.lsp.buf.hover, options)
+    keymap('n', '<Leader>v', lsp_hover, options)
     keymap('n', '<Leader>mr', vim.lsp.buf.rename, options)
     keymap('n', '<Leader>mf', fzf.lsp_references, options)
     keymap('n', '<Leader>a', vim.lsp.buf.code_action, options)

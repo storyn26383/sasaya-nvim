@@ -74,7 +74,11 @@ return {{
             DressingSelectText = { bg = colors.base, fg = colors.text },
             DressingSelectIdx = { bg = colors.mantle },
             QuickFixLine = { bg = colors.crust, style = {} },
-            NormalFloat = { bg = colors.crust, fg = colors.text },
+            NormalFloat = { bg = colors.mantle, fg = colors.text },
+            FloatBorder = { bg = colors.mantle, fg = colors.blue },
+
+            FzfLuaNormal = { bg = colors.base },
+            FzfLuaBorder = { bg = colors.base, fg = colors.blue },
 
             NvimTreeNormal = { bg = colors.base, fg = colors.text },
             NvimTreeExecFile = { fg = colors.green },
