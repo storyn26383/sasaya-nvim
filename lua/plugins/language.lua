@@ -18,7 +18,7 @@ local languages, servers, dictionary = utils.entities_and_dictionary({
 local without_mason_lspconfig = utils.merge(G.disabled_language_server, {
   'dartls',
 })
-local formaters = {
+local formatters = {
   'pint',
   'php-cs-fixer',
 }
@@ -86,7 +86,7 @@ return {{
   config = function()
     require('mason').setup()
     require('mason-null-ls').setup({
-      ensure_installed = utils.merge(formaters, linters),
+      ensure_installed = utils.merge(formatters, linters),
     })
 
     local keymap = vim.keymap.set
