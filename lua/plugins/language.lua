@@ -94,13 +94,14 @@ return {{
     require('mason').setup()
     require('mason-null-ls').setup({
       ensure_installed = utils.merge(formatters, linters),
+      handlers = {}, -- for automatic setup
     })
 
     local keymap = vim.keymap.set
     local options = { silent = true }
 
     keymap('n', '<Leader>f', function()
-      vim.lsp.buf.format()
+      vim.lsp.buf.format({ async = false })
       vim.cmd('write')
     end, options)
   end
